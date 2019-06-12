@@ -63,7 +63,7 @@ else{
  db.Headline.find({_id:id}).then( r => {
     t = r[0].title;
     cId = r[0].comments;
-    console.log(`this is the comments ID ${cId}`);
+    console.log(`this is the comments ID ${cId} &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& ${r[0]}`);
     console.log(`this is r inside comment id ${t} and ${id}`);
 }).then(() => {
     db.Headline.find({}).then((r) => {
@@ -76,8 +76,7 @@ else{
                     id: r[i].id
                 });
         }
-    })
-}).then(() => {
+    }).then(() => {
         for(let i = 0; i<cId.length; i++){
             db.Comment.find({_id:cId[i]}).then( r => {
                 console.log(`this is r inside of the comment return: ${r[0].body}`)
@@ -85,9 +84,12 @@ else{
             })
         }
     }).then(() => {
-        console.log('its render time - modal style')
-        res.render('modal', { articles, cTitle: t, commentId: id, comment: c })
+        setTimeout(() => {
+            console.log('its render time - modal style')
+            res.render('modal', { articles, cTitle: t, commentId: id, comment: c })
+        }, 500);
     })
+})
 
         
 
