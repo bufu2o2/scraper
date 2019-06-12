@@ -57,35 +57,44 @@ if(id === 'app.js'){
     res.redirect('/app.js');
 }
 else{
+    let t = 'OG';
+    let cId = [];
+    let c = [];
  db.Headline.find({_id:id}).then( r => {
-     let t = r[0].title;
-     let cId = r[0].comments;
-     let c = [];
-     console.log(`this is the comments ID ${cId}`);
-        console.log(`this is r inside comment id ${t} and ${id}`);
-
-        db.Headline.find({}).then((r) => {
-            console.log(r);
-            for(let i = 0;i<r.length;i++){
-                articles.push(
-                    {
-                        title: r[i].title,
-                        saved: true,
-                        id: r[i].id
-                    });
-            }
-        });
-        
+    t = r[0].title;
+    cId = r[0].comments;
+    console.log(`this is the comments ID ${cId}`);
+    console.log(`this is r inside comment id ${t} and ${id}`);
+}).then(() => {
+    db.Headline.find({}).then((r) => {
+        console.log(r);
+        for(let i = 0;i<r.length;i++){
+            articles.push(
+                {
+                    title: r[i].title,
+                    saved: true,
+                    id: r[i].id
+                });
+        }
+    })
+}).then(() => {
         for(let i = 0; i<cId.length; i++){
             db.Comment.find({_id:cId[i]}).then( r => {
                 console.log(`this is r inside of the comment return: ${r[0].body}`)
-                c.push({ body: r[0].body });
+                c.push(r[0].body);
             })
         }
+    }).then(() => {
+        console.log('its render time - modal style')
+        res.render('modal', { articles, cTitle: t, commentId: id, comment: c })
+    })
+
+        
+
        
 
-        res.render('modal', { articles, cTitle: t, commentId: id, comment: c });
-    });
+        
+
     }
 })
 
@@ -133,7 +142,6 @@ app.get('/deleteAll', (req,res) => {
         })
         console.log('collection removed')
         res.redirect('/');
-        // return res.status(200).send();
     })
 })
 
@@ -143,61 +151,10 @@ app.post('/submit', (req,res) => {
     console.log(`this is the req.body of comment: ${b} and the req id: ${id}`);
     db.Comment.create({body:b})
     .then( r => db.Headline.findOneAndUpdate({_id:id}, { $push: { comments: r._id }}, { new: true }))
-    .then( () => res.redirect('/'));
+    .then( () => {
+        console.log('about to redirect')
+        res.redirect('/comment/'+id);
+    })
 })
 
 app.listen(PORT, () => console.log(`Scraper is running on http://localhost:${PORT}`));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const mongoose = require("mongoose");
-// const logger = require("morgan");
-// const express = require('express');
-// const app = express();
-
-// const PORT = 8008;
-// const db = require("./models");
-
-// app.use(logger("dev"));
-// app.use(express.urlencoded({ extended: true }));
-
-// app.use(express.static(__dirname + '/public'));
-
-// const exhb = require("express-handlebars");
-// app.engine("handlebars", exhb({ defaultLayout: 'main' }));
-// app.set('view engine', 'handlebars');
-
-// mongoose.connect('mongodb://localhost/scraped', { useNewUrlParser: true });
-
-
-
-// app.get('/', (req,res) => {
-//     res.send("Hello World!")
-// });
-
-
-// app.listen(PORT, () => console.log(`Scraper is now running on http://localhost:${PORT} !`));
