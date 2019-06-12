@@ -1,0 +1,67 @@
+<header>
+    <div class = 'left'>
+        {{#if articles}}
+            <div class = 'smBtn'><i class="fas fa-dumpster-fire"></i></div>
+        {{/if}}
+    </div>
+    <div class = 'center banner'>Welcome to Scraper</div>
+    <div class = 'right'>
+        {{#if articles}}
+        <div></div>
+        <div class = 'btn saved'>Saved</div>
+        {{else}}
+        <div class = 'btn scrape'>Scrape!</div>
+        {{/if}}
+    </div>
+</header>
+<div class = 'ninja'>
+    <div id = 'close'><i class="fas fa-window-close"></i></div>
+    <div id = 'displayHl'> {{cTitle}} </div>
+    <div id = 'options'>
+        <span class="far fa-eye" id = 'view'></span>
+        <span class="fas fa-pencil-alt" id = 'writeC'></span>
+    </div>
+    <div id = 'commentView'>
+        <ul id = 'cvUl'>
+            {{#if comment}}
+            {{#each comment}}
+            <li class = 'fas fa-paw' id = 'yescomments'>    "<b>{{this.body}}</b>"</li>
+            {{/each}}
+            {{else}}
+            <li id = 'nocomments'> No Comments </li>
+            {{/if}}
+        </ul>
+    </div>
+    <div id = 'commentForm'>
+        <form>
+            <textarea name="body" type = 'text' id="commentBody" cols="45" rows="5" placeholder="Write your comment here"></textarea>
+            <button id = 'commentBtn' data-id = {{commentId}} ><i class="fas fa-comment"></i></button>
+        </form>
+    </div>
+</div>
+<div class = 'content'>
+    <ul class = 'aList'>
+        {{#if articles}}
+        {{#each articles}}
+        <li>
+            <div class = 'left'></div>
+            {{#if this.saved}}
+            <div class  = 'center'> {{this.title}} </div>
+            <div class = 'right'>            
+                <div class = 'delBtn' data-id = {{this.id}}> <i class="fas fa-trash-alt"></i> </div>
+                <div class = 'comBtn' data-id = {{this.id}}> <i class="fas fa-comment-medical"></i> </div>
+            {{else}}
+            <div class  = 'center'> {{this}} </div>
+            <div class = 'right'> 
+                <div class = 'saveBtn'> <i class="fas fa-cloud-download-alt"></i> </div>
+            {{/if}}
+            </div>
+        </li>
+        {{/each}}
+        {{else}}
+        <div class = 'spacer'></div>
+        <div class = 'spacer'></div>
+        <h1>No Articles Found</h1>
+        {{/if}}
+    </ul></div>
+<footer>Scraper Inc<br>2019</footer>

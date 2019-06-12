@@ -1,0 +1,194 @@
+html, body{
+    height: 100%;
+    font-size: 12px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: lightgray;
+    overflow-y: hidden;
+}
+header{
+    display: grid;
+    background-color: rgb(0, 0, 0);
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 50px;
+    padding-top: 80px;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 10px;
+    align-items: center;
+    justify-items: center;
+    padding-bottom: 50px;
+    border-bottom: 2px solid darkgray;
+    color: white;
+}
+.center{
+    justify-self: center;
+}
+.right{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-self: right;
+}
+.banner{
+    text-align: center;
+    font-size: 50px;
+}
+.btn{
+    border: 2px darkgray solid;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 20px;
+    background-color: lightblue;
+    color: black;
+}
+.btn:hover{
+    border: 2px white solid;
+    color: black;
+    background-color: rgb(240, 248, 255);
+    cursor: crosshair;
+}
+.content{
+    height: calc(100% - 240px);
+    overflow-y: auto;
+}
+footer{
+    display: grid;
+    position: absolute;
+    background-color: black;
+    color: white;
+    bottom: calc(0%);
+    align-items: end;
+    justify-items: center;
+    border-top: 2px solid darkgray;
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    height: 20px;
+    width: 100%;
+}
+.spacer {
+    height: 50px;
+}
+.aList li{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 800;
+    grid-template-columns: 1fr 3fr 1fr;
+
+}
+.aList h1{
+    font-size: 50px;
+    font-weight: 600;
+    text-align: center;
+}
+.saveBtn, .delBtn, .smBtn, .skull:first-child, .comBtn, #options span, #paw {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: lightblue;
+    margin: 10px 0;
+    margin-right: 60px;
+    border: 1px grey solid;
+    border-radius: 5px;
+}
+.saveBtn:hover, .delBtn:hover, .smBtn:hover, .comBtn:hover, #options span:hover{
+    background-color: rgba(240, 248, 255, 0.669);
+    cursor: crosshair;
+}
+.smBtn{
+    color: black;
+    padding-left: 10px;
+}
+.smBtn:hover{
+    color: crimson;
+}
+.skull{
+    text-align: center;
+    pointer-events: none;
+    
+}
+.ninja{
+    display: grid;
+    position: absolute;
+    top: calc(50% - 150px);
+    left: calc(50% - 200px);
+    width: 400px;
+    height: 300px;
+    z-index: 100;
+    border: 2px inset darkgray;
+    border-radius: 5px;
+    background-color: lightgray;
+    align-items: center;
+    justify-content: center;
+}
+#close, #displayHl, #commentForm, #commentForm button, #commentView{
+    position: absolute;
+}
+#close{
+    top: 15px;
+    right: 15px;
+    font-size: 15px;
+}
+#close:hover{
+    color: crimson;
+}
+#commentForm button{ 
+    bottom: -30px;
+    right: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: transparent;
+    outline: none;
+}
+#commentForm, #commentView {
+    bottom: 40px;
+    left: calc(50% - 182px);
+}
+#commentForm textarea, #cvUl {
+    resize: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 10px;
+    width: 360px;
+    height: 75px;
+}
+#displayHl, #nocomments {
+    top: 40px;
+    left: calc(50% - 180px);
+    width: 360px;
+    height: 75px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+#options {
+    display: grid;
+    margin: 0;
+    align-items: center;
+    justify-items: center;
+}
+#options span, #paw {
+    width: 25px;
+    height: 25px;
+    margin-right: 0;
+    margin: 0;
+}
+#options #writeC, #commentView {
+    display: none;
+}
+#paw {
+    width: 10px;
+    height: 10px;
+    font-size: 8;
+}
+#yescomments {
+    display: block;
+    line-height: 1.5;
+}
+#yescomments b {
+    font-size: 12px;
+    font-family: 'Courier New', Courier, monospace;
+}
