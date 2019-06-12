@@ -7,6 +7,7 @@ const exhb = require('express-handlebars');
 
 
 const PORT = 8008;
+const MONGODB_URI = process.env.MONGODB_URI || ('mongodb://localhost/scraperdb', { useNewUrlParser: true });
 
 let db = require("./models");
 
@@ -20,7 +21,7 @@ app.use(express.static('public'));
 app.engine('handlebars', exhb({ defaultLayout: "main" }));
 app.set('view engine', 'handlebars');
 
-mongoose.connect('mongodb://localhost/scraperdb', { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI);
 
 // app.get('/', (req,res) => {
 //     // db.Headline.remove({}, e => console.log('collection removed'));
