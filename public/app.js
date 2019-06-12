@@ -81,13 +81,16 @@ $('#commentBtn').on('click', (e) => {
     let id = $('#commentBtn').attr('data-id');
     let bObj = { id: id, body: b }
     console.log('form comment clicked')
+    console.log(`this is the b value before if statemnt: ${b}`);
     if( b === ''){
         alert('please enter a comment')
     }
-    $.ajax('/submit', {
-        type: 'POST',
-        data: bObj
-    }).then(() => {
-        console.log('comment posted to db')
-    })
+    else{
+        $.ajax('/submit', {
+            type: 'POST',
+            data: bObj
+        }).then(() => {
+            console.log('comment posted to db')
+        })
+    }
 })
