@@ -7,7 +7,7 @@ const exhb = require('express-handlebars');
 
 
 const PORT = 8008;
-const MONGODB_URI = process.env.MONGODB_URI || ('mongodb://localhost/scraperdb', { useNewUrlParser: true });
+var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/scraperdb';
 
 let db = require("./models");
 
@@ -22,19 +22,6 @@ app.engine('handlebars', exhb({ defaultLayout: "main" }));
 app.set('view engine', 'handlebars');
 
 mongoose.connect(MONGODB_URI);
-
-// app.get('/', (req,res) => {
-//     // db.Headline.remove({}, e => console.log('collection removed'));
-//     db.Headline.find({}).then((r) => {
-//         console.log(r);
-//         let articles = [];
-//         for(let i=0;i<r.length;i++){
-//             articles.push(r[i].title);
-//         }
-//         // res.render('index', { articles: ['asdf', 'asdf', 'asdf'] });
-//         res.render('index', { articles , saved: false});
-//     });
-// });
 
 app.get('/scrape', (req,res) => {
     console.log('scrape started');
