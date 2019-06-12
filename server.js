@@ -4,12 +4,13 @@ const cheerio = require('cheerio');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const exhb = require('express-handlebars');
+const path = require('path');
 
 
 const PORT = process.env.PORT || 8008;
 var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/scraperdb';
 
-let db = require("./models");
+let db = require(path.join(__dirname, "./models"));
 
 const app = express();
 
