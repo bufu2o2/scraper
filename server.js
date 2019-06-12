@@ -34,15 +34,11 @@ app.get('/scrape', (req,res) => {
         let rx = new RegExp('^\“.*\”$');
         if(rx.test(x)){
             artArr.push(x);
-            // db.Headline.create({ title: x })
-            // .then((dbH) => console.log(dbH))
-            // .catch((e) => console.log(e.message));
         }
     });
 })
 .then((r) => console.log(artArr))
 .then((r) => res.render('index', {articles: artArr}));
-// .then((r) => window.location.replace('/'));
 
 });
 

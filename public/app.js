@@ -75,7 +75,8 @@ $('#writeC').on('click', () => {
     }, 300);
 })
 
-$('#commentBtn').on('click', () => {
+$('#commentBtn').on('click', (e) => {
+    e.preventDefault();
     let b = $('#commentBody').val().trim();
     let id = $('#commentBtn').attr('data-id');
     let bObj = { id: id, body: b }
