@@ -91,6 +91,7 @@ $('#commentBtn').on('click', (e) => {
             data: bObj
         }).then(() => {
             console.log('comment posted to db')
+            window.replace('/');
         })
     }
 })

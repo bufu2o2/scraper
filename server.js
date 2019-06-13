@@ -91,12 +91,6 @@ else{
     })
 })
 
-        
-
-       
-
-        
-
     }
 })
 
@@ -154,8 +148,8 @@ app.post('/submit', (req,res) => {
     db.Comment.create({body:b})
     .then( r => db.Headline.findOneAndUpdate({_id:id}, { $push: { comments: r._id }}, { new: true }))
     .then( () => {
-        console.log('about to redirect')
-        res.redirect('/comment/'+id);
+            console.log('about to redirect')
+            res.redirect('/comment/'+id);  
     })
 })
 
